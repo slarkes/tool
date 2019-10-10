@@ -23,6 +23,8 @@ public class IndexController {
     public TextArea progress_field;
     public ProgressBar progress_bar;
     public ChoiceBox choice_member;
+    public Button quick_export;
+    public ChoiceBox choice_quick;
 
 
     private String clientId = "c24d5dc6c81de9a1b8";
@@ -41,6 +43,10 @@ public class IndexController {
         showMessage("获取客户总数...");
         long total=getTotalCustomers();
         showMessage("总客户数为:" + total);
+        showMessage("开始下载客户数据...");
+    }
+
+    public void quickExport(ActionEvent actionEvent) {
     }
 
 
@@ -52,6 +58,9 @@ public class IndexController {
     public void initUI() {
         choice_member.getItems().addAll("不限", "非会员", "会员");
         choice_member.getSelectionModel().selectFirst();
+
+        choice_quick.getItems().addAll("全部会员", "上月会员", "本月会员");
+        choice_quick.getSelectionModel().selectFirst();
     }
 
     public void initApi() throws SDKException {
@@ -108,4 +117,6 @@ public class IndexController {
         }
         return youzanScrmCustomerSearchParams;
     }
+
+
 }
