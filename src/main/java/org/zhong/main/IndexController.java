@@ -10,6 +10,7 @@ import com.youzan.cloud.open.sdk.gen.v3_1_0.model.YouzanScrmCustomerSearchParams
 import com.youzan.cloud.open.sdk.gen.v3_1_0.model.YouzanScrmCustomerSearchResult;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import org.zhong.thread.CustomerThread;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,9 +34,9 @@ public class IndexController {
 
     private String ktdId = "41508817";
 
-    private DefaultYZClient yzClient = null;
+    public DefaultYZClient yzClient = null;
 
-    private Token token = null;
+    public Token token = null;
 
     public void exportCustomer(ActionEvent actionEvent) {
         export_button.setDisable(true);
@@ -43,10 +44,20 @@ public class IndexController {
         showMessage("获取客户总数...");
         long total=getTotalCustomers();
         showMessage("总客户数为:" + total);
+        if (total > 10000) {
+            showMessage("客户总数超过10000条, 不能全部导出, 请修改查询条件再试");
+            export_button.setDisable(false);
+            return ;
+        }
         showMessage("开始下载客户数据...");
+
+        Thread thread =new Thread(new CustomerThread(this, total));
+        thread.start();
+
     }
 
     public void quickExport(ActionEvent actionEvent) {
+        System.out.println(System.getProperty("user.dir"));
     }
 
 
@@ -75,7 +86,7 @@ public class IndexController {
         this.token=new Token(oAuthToken.getAccessToken());
         this.yzClient=yzClient;
 
-        showMessage("API初始化成功! token为:"+oAuthToken.getAccessToken());
+        showMessage("API初始化成功!" + oAuthToken.getAccessToken());
     }
 
     private long getTotalCustomers(){
@@ -94,14 +105,13 @@ public class IndexController {
         return 0;
     }
 
-    private YouzanScrmCustomerSearchParams getYouzanScrmCustomerSearchParams() throws ParseException {
+    public YouzanScrmCustomerSearchParams getYouzanScrmCustomerSearchParams() throws ParseException {
         YouzanScrmCustomerSearchParams youzanScrmCustomerSearchParams = new YouzanScrmCustomerSearchParams();
         SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
         if (null != created_at_start.getValue()) {
             Date date = format.parse(created_at_start.getValue().toString());
             //日期转时间戳（毫秒）
             long time=date.getTime();
-            System.out.println(time);
             youzanScrmCustomerSearchParams.setCreatedAtStart(time/1000);
         }
 
