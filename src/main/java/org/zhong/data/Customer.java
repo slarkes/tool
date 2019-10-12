@@ -3,13 +3,16 @@ package org.zhong.data;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.format.NumberFormat;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@ColumnWidth(20)
 public class Customer {
 
+    @ColumnWidth(10)
     @ExcelProperty("序号")
     private int no;
 
@@ -24,9 +27,11 @@ public class Customer {
     @ExcelProperty("上次消费时间")
     private Date last_pay_time;
 
+    @ColumnWidth(10)
     @ExcelProperty("性别")
     private String sex;
 
+    @ColumnWidth(10)
     @ExcelProperty("是否会员")
     private String is_member;
 
@@ -34,24 +39,30 @@ public class Customer {
     @ExcelProperty("最后下单时间")
     private Date last_order_time;
 
+    @ColumnWidth(10)
     @NumberFormat("#.##")
     @ExcelProperty("客单价")
     private Double pct; //per customer transaction
 
+    @ColumnWidth(10)
     @NumberFormat("#.##")
     @ExcelProperty("累计消费金额")
     private Double total_success_order_price;
 
+    @ColumnWidth(10)
     @ExcelProperty("累计消费订单数")
     private long total_success_order_num;
 
+    @ColumnWidth(10)
     @NumberFormat("#.##")
     @ExcelProperty("累计退款金额")
     private Double total_refund_order_price;
 
+    @ColumnWidth(10)
     @ExcelProperty("累计退款订单数")
     private int total_refund_order_num;
 
+    @ColumnWidth(10)
     @ExcelProperty("客户积分")
     private long customer_point;
 
@@ -70,6 +81,7 @@ public class Customer {
     @ExcelProperty("县级市、区")
     private String district;
 
+    @ColumnWidth(80)
     @ExcelProperty("详细地址")
     private String address;
 
@@ -82,6 +94,7 @@ public class Customer {
     @ExcelProperty("权益卡")
     private String customer_power;
 
+    @ColumnWidth(10)
     @NumberFormat("#.##")
     @ExcelProperty("储值余额")
     private Double customer_balance;
@@ -103,8 +116,8 @@ public class Customer {
         return wechat_fan_id;
     }
 
-    public void setWechat_fan_id(long wechat_fan_id) {
-        this.wechat_fan_id = wechat_fan_id;
+    public void setWechat_fan_id(Long wechat_fan_id) {
+        this.wechat_fan_id = null == wechat_fan_id?0:wechat_fan_id;
     }
 
     public Date getCreate_time() {
@@ -128,10 +141,10 @@ public class Customer {
     }
 
     public void setSex(byte sex) {
-        if ('m' == sex) {
+        if (1 == sex) {
             this.sex ="男";
         }
-        if ('f' == sex) {
+        if (2 == sex) {
             this.sex ="女";
         }
         this.sex = "未知";
@@ -158,7 +171,7 @@ public class Customer {
     }
 
     public void setPct(Double pct) {
-        this.pct = pct;
+        this.pct = null == pct?0:pct;
     }
 
     public Double getTotal_success_order_price() {
@@ -166,15 +179,15 @@ public class Customer {
     }
 
     public void setTotal_success_order_price(Double total_success_order_price) {
-        this.total_success_order_price = total_success_order_price;
+        this.total_success_order_price = null == total_success_order_price?0:total_success_order_price;
     }
 
     public long getTotal_success_order_num() {
         return total_success_order_num;
     }
 
-    public void setTotal_success_order_num(long total_success_order_num) {
-        this.total_success_order_num = total_success_order_num;
+    public void setTotal_success_order_num(Long total_success_order_num) {
+        this.total_success_order_num = null == total_success_order_num?0:total_success_order_num;
     }
 
     public Double getTotal_refund_order_price() {
@@ -182,23 +195,23 @@ public class Customer {
     }
 
     public void setTotal_refund_order_price(Double total_refund_order_price) {
-        this.total_refund_order_price = total_refund_order_price;
+        this.total_refund_order_price = null  == total_refund_order_price?0:total_refund_order_price;
     }
 
     public int getTotal_refund_order_num() {
         return total_refund_order_num;
     }
 
-    public void setTotal_refund_order_num(int total_refund_order_num) {
-        this.total_refund_order_num = total_refund_order_num;
+    public void setTotal_refund_order_num(Integer total_refund_order_num) {
+        this.total_refund_order_num = null == total_refund_order_num?0:total_refund_order_num;
     }
 
     public long getCustomer_point() {
         return customer_point;
     }
 
-    public void setCustomer_point(long customer_point) {
-        this.customer_point = customer_point;
+    public void setCustomer_point(Long customer_point) {
+        this.customer_point = null == customer_point?0:customer_point;
     }
 
     public String getCustomer_name() {

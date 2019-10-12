@@ -112,6 +112,7 @@ public class IndexController {
             Date date = format.parse(created_at_start.getValue().toString());
             //日期转时间戳（毫秒）
             long time=date.getTime();
+//            System.out.println("开始时间:" + time);
             youzanScrmCustomerSearchParams.setCreatedAtStart(time/1000);
         }
 
@@ -119,7 +120,8 @@ public class IndexController {
             Date date = format.parse(created_at_end.getValue().toString());
             //日期转时间戳（毫秒）
             long time=date.getTime();
-            youzanScrmCustomerSearchParams.setCreatedAtStart(time/1000);
+//            System.out.println("结束时间:" + time);
+            youzanScrmCustomerSearchParams.setCreatedAtEnd(time/1000);
         }
 
         if (0 < choice_member.getSelectionModel().getSelectedIndex()) {
