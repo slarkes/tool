@@ -85,8 +85,8 @@ public class IndexController {
 
         this.token=new Token(oAuthToken.getAccessToken());
         this.yzClient=yzClient;
-
-        showMessage("API初始化成功!" + oAuthToken.getAccessToken());
+        System.out.println(token.getAccessToken());
+        showMessage("API初始化成功!");
     }
 
     private long getTotalCustomers(){

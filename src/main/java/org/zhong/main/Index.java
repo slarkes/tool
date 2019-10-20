@@ -13,7 +13,7 @@ import java.net.URL;
 
 public class Index extends Application {
 
-    private IndexController indexController = null;
+    private static IndexController indexController = null;
 
     public static void main(String[] args) {
         launch(args);

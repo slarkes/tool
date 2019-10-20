@@ -21,8 +21,8 @@
       <Label layoutX="14.0" layoutY="71.0" text="是否为会员:" />
       <ChoiceBox fx:id="choice_member" layoutX="123.0" layoutY="67.0" prefWidth="150.0" />
       <Separator layoutX="324.0" layoutY="2.0" orientation="VERTICAL" prefHeight="130.0" prefWidth="7.0" />
-      <Label layoutX="331.0" layoutY="52.0" text="快速导出:" />
-      <ChoiceBox fx:id="choice_quick" layoutX="406.0" layoutY="47.0" prefWidth="150.0" />
-      <Button fx:id="quick_export" onAction="#quickExport" layoutX="486.0" layoutY="105.0" mnemonicParsing="false" text="开始导出" />
+      <Label visible="false" layoutX="331.0" layoutY="52.0" text="快速导出:" />
+      <ChoiceBox visible="false" fx:id="choice_quick" layoutX="406.0" layoutY="47.0" prefWidth="150.0" />
+      <Button visible="false" fx:id="quick_export" onAction="#quickExport" layoutX="486.0" layoutY="105.0" mnemonicParsing="false" text="开始导出" />
    </children>
 </AnchorPane>
